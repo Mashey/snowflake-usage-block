@@ -18,9 +18,11 @@ named_value_format: conditional_to_millions {
 persist_with: snowflake_usage_block_default_datagroup
 
 explore: login_history {
+  group_label: "Snowflake Usage"
 }
 
 explore: query_history {
+  group_label: "Snowflake Usage"
   join: databases {
     type: left_outer
     sql_on: ${query_history.database_name} = ${databases.database_name} ;;
@@ -43,6 +45,7 @@ explore: query_history {
 # }
 
 explore: load_history {
+  group_label: "Snowflake Usage"
   fields: [ALL_FIELDS*,-tables.table_name,-tables.id]
   join: tables {
     sql_on: ${load_history.table_id} = ${tables.id} ;;
@@ -50,9 +53,13 @@ explore: load_history {
   }
 }
 
-explore: storage_usage {}
+explore: storage_usage {
+  group_label: "Snowflake Usage"
+}
 
-explore: warehouse_metering_history {}
+explore: warehouse_metering_history {
+  group_label: "Snowflake Usage"
+}
 
 # explore: columns {}
 #
